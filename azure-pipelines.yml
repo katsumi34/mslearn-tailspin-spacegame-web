@@ -3,6 +3,8 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+  demands:
+  - npm
 
 variables:
   buildConfiguration: 'Release'
@@ -15,6 +17,10 @@ steps:
   inputs:
     packageType: sdk
     version: '$(dotnetSdkVersion)'
+
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '5.9.1'
 
 - task: Npm@1
   displayName: 'Run npm install'
